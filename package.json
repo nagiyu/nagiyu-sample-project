@@ -1,0 +1,22 @@
+{
+  "name": "nagiyu-sample-project",
+  "version": "1.0.0",
+  "description": "This project is the default project for the applications operated by Nagiyu.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nagiyu/nagiyu-sample-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nagiyu/nagiyu-sample-project/issues"
+  },
+  "homepage": "https://github.com/nagiyu/nagiyu-sample-project#readme"
+}
