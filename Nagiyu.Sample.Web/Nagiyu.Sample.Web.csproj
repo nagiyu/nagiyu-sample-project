@@ -9,4 +9,9 @@
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Nagiyu.Common.Auth.Service\Nagiyu.Common.Auth.Service.csproj" />
+    <ProjectReference Include="..\Nagiyu.Sample.Service\Nagiyu.Sample.Service.csproj" />
+  </ItemGroup>
+
 </Project>
