@@ -1,22 +1,21 @@
 {
   "name": "nagiyu-sample-project",
   "version": "1.0.0",
-  "description": "This project is the default project for the applications operated by Nagiyu.",
-  "main": "index.js",
-  "directories": {
-    "doc": "docs"
-  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nagiyu/nagiyu-sample-project.git"
+  "dependencies": {
+    "vue": "^3.5.13"
   },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/nagiyu/nagiyu-sample-project/issues"
-  },
-  "homepage": "https://github.com/nagiyu/nagiyu-sample-project#readme"
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/eslint-config-typescript": "^14.1.4",
+    "eslint": "^9.17.0",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.3",
+    "vue-tsc": "^2.1.10"
+  }
 }
