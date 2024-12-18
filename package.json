@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite src",
-    "build": "vite build",
+    "dev:sample": "TARGET=sample vite",
+    "build": "TARGET=all vite build",
     "lint": "eslint \"src/**/*.{js,ts,vue}\""
   },
   "dependencies": {

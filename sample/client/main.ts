@@ -1,8 +1,8 @@
 import { createApp } from 'vue';
-import App from '@/sample/App.vue';
+import App from './App.vue';
 
 // Vueアプリを作成
 const app = createApp(App);
 
 // アプリをマウント
-app.mount('#vue-app'); // HTMLで`#vue-app`にマウントされる
+app.mount('#vue-sample'); // HTMLで`#vue-app`にマウントされる

@@ -2,37 +2,62 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import path, { resolve } from 'path';
 
-export default defineConfig({
-  plugins: [vue()],
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src'), // 絶対パスで`@`を使えるようにする
-    },
+// 各機能の設定
+const features = [
+  {
+    name: 'all',
+    root: '', // TODO: とりあえず空
+    entry: '', // TODO: とりあえず空
   },
-  server: {
-    port: 3000, // 開発用サーバーのポート番号
-    proxy: {
-      // ASP.NET MVCのAPIにプロキシ
-      '/api': {
-        target: 'https://dev-sample.nagiyu.com', // ASP.NET APIサーバー
-        changeOrigin: true, // オリジンを変更（CORS対策）
-        secure: false, // HTTPSを許可（ローカル開発用）
+  {
+    name: 'sample',
+    root: 'sample/client',
+    entry: 'sample/client/main.ts',
+  },
+];
+
+export default defineConfig(({ command }) => {
+  const isDev = command === 'serve';
+  const target = process.env.TARGET;
+  const featureConfig = features.find((f) => f.name === target);
+
+  if (!featureConfig) {
+    throw new Error(`Feature not found: ${target}`);
+  }
+
+  return {
+    plugins: [vue()],
+    root: isDev ? resolve(__dirname, featureConfig.root) : undefined, // デバッグ時のルートをmockにする
+    build: {
+      rollupOptions: {
+        input: isDev
+          ? resolve(__dirname, featureConfig.entry)
+          : Object.fromEntries(features.filter((feature) => { return feature.name !== 'all' }).map((feature) => [feature.name, resolve(__dirname, feature.entry)])),
+        output: {
+          entryFileNames: '[name].js', // 出力ファイル名を設定 (ハッシュなし)
+          chunkFileNames: '[name]-chunk.js', // 共通チャンクファイルの名前
+          assetFileNames: 'assets/[name].[ext]', // アセット（CSSなど）の名前
+        },
+      },
+      outDir: 'Nagiyu.Web/wwwroot/js/dist', // ASP.NET MVCの`wwwroot/dist`に出力
+      manifest: false, // マニフェストファイルも生成しない
+      emptyOutDir: true, // ビルドディレクトリをクリーンアップ
+    },
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, './src'), // 絶対パスで`@`を使えるようにする TODO: 共通のファイルができればパスを変える
       },
     },
-  },
-  build: {
-    outDir: './Nagiyu.Web/wwwroot/dist', // ASP.NET MVCの`wwwroot/dist`に出力
-    rollupOptions: {
-      input: {
-        sample: resolve(__dirname, 'src/sample/main.ts'),
-      },
-      output: {
-        entryFileNames: '[name].js', // 出力ファイル名を設定 (ハッシュなし)
-        chunkFileNames: '[name]-chunk.js', // 共通チャンクファイルの名前
-        assetFileNames: 'assets/[name].[ext]', // アセット（CSSなど）の名前
+    server: {
+      port: 3000, // 開発用サーバーのポート番号
+      proxy: {
+        // ASP.NET MVCのAPIにプロキシ
+        '/api': {
+          target: 'https://dev-sample.nagiyu.com', // ASP.NET APIサーバー
+          changeOrigin: true, // オリジンを変更（CORS対策）
+          secure: false, // HTTPSを許可（ローカル開発用）
+        },
       },
     },
-    manifest: false, // マニフェストファイルも生成しない
-    emptyOutDir: true, // ビルドディレクトリをクリーンアップ
-  },
+  };
 });
