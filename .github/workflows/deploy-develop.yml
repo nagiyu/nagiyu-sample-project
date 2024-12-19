@@ -30,10 +30,10 @@ jobs:
         dotnet-version: 8.0.x
 
     - name: Publish with dotnet
-      run: dotnet publish --configuration Release Nagiyu.Web/Nagiyu.Web.csproj
+      run: dotnet publish --configuration Release home/web/Nagiyu.Web.csproj
 
     - name: Copy files
-      run: cp -r Nagiyu.Web/bin/Release/net8.0/publish containers/nagiyu/bin
+      run: cp -r home/web/bin/Release/net8.0/publish containers/nagiyu/bin
 
     # - name: Add .env
     #   run: echo "${{ secrets.DEVELOP_ENV }}" > containers/.env
