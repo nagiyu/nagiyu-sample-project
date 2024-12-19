@@ -39,7 +39,7 @@ export default defineConfig(({ command }) => {
           assetFileNames: 'assets/[name].[ext]', // アセット（CSSなど）の名前
         },
       },
-      outDir: 'Nagiyu.Web/wwwroot/js/dist', // ASP.NET MVCの`wwwroot/dist`に出力
+      outDir: 'home/web/wwwroot/js/dist', // ASP.NET MVCの`wwwroot/dist`に出力
       manifest: false, // マニフェストファイルも生成しない
       emptyOutDir: true, // ビルドディレクトリをクリーンアップ
     },
