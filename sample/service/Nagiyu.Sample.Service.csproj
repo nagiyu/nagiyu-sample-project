@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Nagiyu.Common.Auth.Service\Nagiyu.Common.Auth.Service.csproj" />
+    <ProjectReference Include="..\..\common\auth\service\Nagiyu.Common.Auth.Service.csproj" />
   </ItemGroup>
 
 </Project>
