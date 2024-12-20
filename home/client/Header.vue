@@ -29,33 +29,28 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { Component, Vue, toNative } from "vue-facing-decorator";
 
 interface MenuItem {
   label: string;
   link: string;
 }
 
-export default defineComponent({
-  name: "Navbar",
-  data() {
-    var leftMenuItems: MenuItem[] = [
-      { label: "Home", link: "https://dev-sample.nagiyu.com/" },
-      { label: "Privacy", link: "https://dev-sample.nagiyu.com/Home/Privacy" },
-      { label: "Sample", link: "https://dev-sample.nagiyu.com/Sample" },
-    ];
+@Component
+class Header extends Vue {
+  public leftMenuItems: MenuItem[] = [
+    { label: "Home", link: "https://dev-sample.nagiyu.com/" },
+    { label: "Privacy", link: "https://dev-sample.nagiyu.com/Home/Privacy" },
+    { label: "Sample", link: "https://dev-sample.nagiyu.com/Sample" },
+  ];
 
-    var rightMenuItems: MenuItem[] = [
-      { label: "Login", link: "https://dev-sample.nagiyu.com/Account/Login" },
-      { label: "Register", link: "https://dev-sample.nagiyu.com/Account/Register" },
-    ];
+  public rightMenuItems: MenuItem[] = [
+    { label: "Login", link: "https://dev-sample.nagiyu.com/Account/Login" },
+    { label: "Register", link: "https://dev-sample.nagiyu.com/Account/Register" },
+  ];
+}
 
-    return {
-      leftMenuItems,
-      rightMenuItems
-    };
-  },
-});
+export default toNative(Header)
 </script>
 
 <style scoped>

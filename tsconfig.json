@@ -13,7 +13,8 @@
       "@/*": [
         "src/*"
       ] // TODO: 共通のファイルができればパスを変える
-    }
+    },
+    "experimentalDecorators": true // デコレータを使えるように
   },
   "include": [
     "**/*",
