@@ -1,15 +1,19 @@
 import { createApp } from 'vue';
 import Header from './Header.vue';
+import Footer from './Footer.vue';
 
 // Buefy
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
 
 // Vueアプリを作成
-const app = createApp(Header);
+const headerapp = createApp(Header);
+const footerApp = createApp(Footer);
 
 // Buefyを使用
-app.use(Buefy as any);
+headerapp.use(Buefy as any);
+footerApp.use(Buefy as any);
 
 // アプリをマウント
-app.mount('#vue-header');
+headerapp.mount('#vue-header');
+footerApp.mount('#vue-footer');
