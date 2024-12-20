@@ -70,8 +70,6 @@ class Header extends Vue {
   private async GetRightMenuItems(): Promise<MenuItem[]> {
     var user = await AuthUtil.GetUser<IUserAuthBase>();
 
-    console.log(user);
-
     if (user === null) {
       return [
         { label: "Login", link: "/Account/Login" },
