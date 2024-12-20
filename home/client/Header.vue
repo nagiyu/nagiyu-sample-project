@@ -15,21 +15,22 @@
     </div>
 
     <!-- 右側のメニュー -->
-    <div v-if="UserName" class="menu-right">
-      Welcome, {{ UserName }}!!!
-    </div>
-
     <div class="menu-right">
-      <b-button
-        v-for="(item, index) in RightMenuItems"
-        :key="index"
-        type="is-light"
-        size="is-medium"
-        tag="a"
-        :href="item.link"
-      >
-        {{ item.label }}
-      </b-button>
+      <template v-if="UserName">
+        Welcome, {{ UserName }}!!!
+      </template>
+      <template v-else>
+        <b-button
+          v-for="(item, index) in RightMenuItems"
+          :key="index"
+          type="is-light"
+          size="is-medium"
+          tag="a"
+          :href="item.link"
+        >
+          {{ item.label }}
+        </b-button>
+      </template>
     </div>
   </nav>
 </template>
