@@ -25,7 +25,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: NagiyuClient
-        path: Nagiyu.Web/wwwroot/js/dist
+        path: home/web/wwwroot/js/dist
 
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
