@@ -29,6 +29,7 @@
 </template>
 
 <script lang="ts">
+import AuthUtil from "@common/utils/AuthUtil";
 import { Component, Vue, toNative } from "vue-facing-decorator";
 
 interface MenuItem {
@@ -44,10 +45,16 @@ class Header extends Vue {
     { label: "Sample", link: "https://dev-sample.nagiyu.com/Sample" },
   ];
 
-  public rightMenuItems: MenuItem[] = [
-    { label: "Login", link: "https://dev-sample.nagiyu.com/Account/Login" },
-    { label: "Register", link: "https://dev-sample.nagiyu.com/Account/Register" },
-  ];
+  public rightMenuItems: MenuItem[] = this.GetRightMenuItems();
+
+  private GetRightMenuItems(): MenuItem[] {
+    var user = AuthUtil.GetUser();
+
+    return [
+      { label: "Login", link: "https://dev-sample.nagiyu.com/Account/Login" },
+      { label: "Register", link: "https://dev-sample.nagiyu.com/Account/Register" },
+    ];
+  }
 }
 
 export default toNative(Header)

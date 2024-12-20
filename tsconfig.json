@@ -10,8 +10,8 @@
     "skipLibCheck": true, // 型定義ファイルのチェックをスキップ
     "baseUrl": ".", // ベースディレクトリ
     "paths": {
-      "@/*": [
-        "src/*"
+      "@common/*": [
+        "common/client/*"
       ] // TODO: 共通のファイルができればパスを変える
     },
     "experimentalDecorators": true // デコレータを使えるように
