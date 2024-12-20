@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "dev:home": "TARGET=home vite",
     "dev:sample": "TARGET=sample vite",
     "build": "TARGET=all vite build",
     "lint": "eslint \"src/**/*.{js,ts,vue}\""
   },
   "dependencies": {
+    "buefy": "npm:@ntohq/buefy-next@^0.1.4",
     "vue": "^3.5.13"
   },
   "devDependencies": {

@@ -10,6 +10,11 @@ const features = [
     entry: '', // TODO: とりあえず空
   },
   {
+    name: 'home',
+    root: 'home/client',
+    entry: 'home/client/main.ts',
+  },
+  {
     name: 'sample',
     root: 'sample/client',
     entry: 'sample/client/main.ts',

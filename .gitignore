@@ -397,4 +397,6 @@ FodyWeavers.xsd
 *.sln.iml
 
 # Custom
-js/dist
+home/web/wwwroot/js/dist
+**/*client/assets/*
+**/*client/*.html
