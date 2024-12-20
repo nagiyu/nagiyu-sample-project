@@ -11,7 +11,7 @@
     "baseUrl": ".", // ベースディレクトリ
     "paths": {
       "@auth/*": [
-        "common/auth/client/*"
+        "auth/client/*"
       ] // TODO: 共通のファイルができればパスを変える
     },
     "experimentalDecorators": true // デコレータを使えるように
