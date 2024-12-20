@@ -75,7 +75,7 @@ class Header extends Vue {
         { label: "Login", link: "/Account/Login" },
         { label: "Register", link: "/Account/Register" },
       ];
-    } else if (user.userName === null) {
+    } else if (user.userName === '') {
       return [
         { label: "Register", link: "/Account/Register" },
       ];
