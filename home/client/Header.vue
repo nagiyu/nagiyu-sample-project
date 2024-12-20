@@ -7,6 +7,7 @@
         :key="index"
         type="is-primary"
         size="is-medium"
+        tag="a"
         :href="item.link"
       >
         {{ item.label }}
@@ -20,6 +21,7 @@
         :key="index"
         type="is-light"
         size="is-medium"
+        tag="a"
         :href="item.link"
       >
         {{ item.label }}
@@ -29,7 +31,7 @@
 </template>
 
 <script lang="ts">
-import AuthUtil from "@common/utils/AuthUtil";
+import AuthUtil from "@auth/utils/AuthUtil";
 import { Component, Vue, toNative } from "vue-facing-decorator";
 
 interface MenuItem {
@@ -39,21 +41,49 @@ interface MenuItem {
 
 @Component
 class Header extends Vue {
-  public leftMenuItems: MenuItem[] = [
-    { label: "Home", link: "https://dev-sample.nagiyu.com/" },
-    { label: "Privacy", link: "https://dev-sample.nagiyu.com/Home/Privacy" },
-    { label: "Sample", link: "https://dev-sample.nagiyu.com/Sample" },
-  ];
+  /**
+   * 左側のメニューボタン
+   */
+  public leftMenuItems: MenuItem[] = [];
 
-  public rightMenuItems: MenuItem[] = this.GetRightMenuItems();
+  /**
+   * 右側のメニューボタン
+   */
+  public rightMenuItems: MenuItem[] = [];
 
-  private GetRightMenuItems(): MenuItem[] {
-    var user = AuthUtil.GetUser();
-
-    return [
-      { label: "Login", link: "https://dev-sample.nagiyu.com/Account/Login" },
-      { label: "Register", link: "https://dev-sample.nagiyu.com/Account/Register" },
+  /**
+   * コンポーネントが作成されたときに呼び出されるライフサイクルフック
+   */
+  public async created() {
+    this.leftMenuItems = [
+      { label: "Home", link: "/" },
+      { label: "Privacy", link: "/Home/Privacy" },
+      { label: "Sample", link: "/Sample" },
     ];
+
+    this.rightMenuItems = await this.GetRightMenuItems();
+  }
+
+  /**
+   * 右側のメニューボタンを取得する
+   */
+  private async GetRightMenuItems(): Promise<MenuItem[]> {
+    var user = await AuthUtil.GetUser<IUserAuthBase>();
+
+    if (user === null) {
+      return [
+        { label: "Login", link: "/Account/Login" },
+        { label: "Register", link: "/Account/Register" },
+      ];
+    } else if (user.userName === null) {
+      return [
+        { label: "Register", link: "/Account/Register" },
+      ];
+    } else {
+      return [
+        { label: "Top", link: "/" },
+      ];
+    }
   }
 }
 

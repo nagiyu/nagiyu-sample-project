@@ -50,7 +50,7 @@ export default defineConfig(({ command }) => {
     },
     resolve: {
       alias: {
-        '@common': path.resolve(__dirname, 'common/client'), // 絶対パスで`@`を使えるようにする TODO: 共通のファイルができればパスを変える
+        '@auth': path.resolve(__dirname, 'common/auth/client'), // 絶対パスで`@`を使えるようにする TODO: 共通のファイルができればパスを変える
       },
     },
     server: {
