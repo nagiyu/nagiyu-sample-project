@@ -5,7 +5,7 @@ import axios, { AxiosResponse } from 'axios';
  */
 export default class AuthUtil {
   public static async GetUser<T extends IUserAuthBase>(): Promise<T | null> {
-    var response = await axios.get<any, AxiosResponse<T, any>>('/Account/GetUser');
+    var response = await axios.get<any, AxiosResponse<T, any>>('/api/account/user');
 
     if (response.status === 200) {
       return response.data;

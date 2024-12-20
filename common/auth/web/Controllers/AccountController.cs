@@ -90,6 +90,7 @@ namespace Nagiyu.Common.Auth.Web.Controllers
         }
 
         [HttpGet]
+        [Route("api/account/user")]
         public async Task<IActionResult> GetUser()
         {
             var user = await authService.GetUser<UserAuthBase>();
