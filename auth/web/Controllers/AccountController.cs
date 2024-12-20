@@ -5,7 +5,7 @@ using Nagiyu.Common.Auth.Service.Models;
 using Nagiyu.Common.Auth.Service.Services;
 using System.Threading.Tasks;
 
-namespace Nagiyu.Common.Auth.Web.Controllers
+namespace Nagiyu.Auth.Web.Controllers
 {
     /// <summary>
     /// アカウントコントローラー

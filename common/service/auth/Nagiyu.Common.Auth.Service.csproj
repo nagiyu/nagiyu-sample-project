@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\dynamoDbManager\Nagiyu.Common.DynamoDBManager.csproj" />
+    <ProjectReference Include="..\dynamoDbManager\Nagiyu.Common.DynamoDBManager.csproj" />
   </ItemGroup>
 
 </Project>
