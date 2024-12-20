@@ -89,6 +89,14 @@ namespace Nagiyu.Common.Auth.Web.Controllers
             return Redirect("/");
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetUser()
+        {
+            var user = await authService.GetUser<UserAuthBase>();
+
+            return Json(user);
+        }
+
         /// <summary>
         /// アクセス拒否
         /// </summary>
