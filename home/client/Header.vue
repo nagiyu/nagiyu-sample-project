@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar">
-    <!-- 左側のボタンメニュー -->
+    <!-- 左側のメニュー -->
     <div class="menu-left">
       <b-button
         v-for="(item, index) in leftMenuItems"
@@ -14,10 +14,14 @@
       </b-button>
     </div>
 
-    <!-- 右側のボタンメニュー -->
+    <!-- 右側のメニュー -->
+    <div v-if="UserName" class="menu-right">
+      Welcome, {{ UserName }}!!!
+    </div>
+
     <div class="menu-right">
       <b-button
-        v-for="(item, index) in rightMenuItems"
+        v-for="(item, index) in RightMenuItems"
         :key="index"
         type="is-light"
         size="is-medium"
@@ -44,46 +48,47 @@ class Header extends Vue {
   /**
    * 左側のメニューボタン
    */
-  public leftMenuItems: MenuItem[] = [];
+  public leftMenuItems: MenuItem[] = [
+    { label: "Home", link: "/" },
+    { label: "Privacy", link: "/Home/Privacy" },
+    { label: "Sample", link: "/Sample" },
+  ];
+
+  /**
+   * ユーザー情報
+   */
+  private user: IUserAuthBase | null = null;
 
   /**
    * 右側のメニューボタン
    */
-  public rightMenuItems: MenuItem[] = [];
+  public get RightMenuItems(): MenuItem[] {
+    if (this.user === null) {
+      return [
+        { label: "Login", link: "/Account/Login" },
+        { label: "Register", link: "/Account/Register" },
+      ];
+    } else if (this.user.userName === '') {
+      return [
+        { label: "Register", link: "/Account/Register" },
+      ];
+    } else {
+      return [];
+    }
+  }
+
+  /**
+   * ユーザー名
+   */
+  public get UserName(): string {
+    return this.user?.userName ?? "";
+  }
 
   /**
    * コンポーネントが作成されたときに呼び出されるライフサイクルフック
    */
   public async created() {
-    this.leftMenuItems = [
-      { label: "Home", link: "/" },
-      { label: "Privacy", link: "/Home/Privacy" },
-      { label: "Sample", link: "/Sample" },
-    ];
-
-    this.rightMenuItems = await this.GetRightMenuItems();
-  }
-
-  /**
-   * 右側のメニューボタンを取得する
-   */
-  private async GetRightMenuItems(): Promise<MenuItem[]> {
-    var user = await AuthUtil.GetUser<IUserAuthBase>();
-
-    if (user === null) {
-      return [
-        { label: "Login", link: "/Account/Login" },
-        { label: "Register", link: "/Account/Register" },
-      ];
-    } else if (user.userName === '') {
-      return [
-        { label: "Register", link: "/Account/Register" },
-      ];
-    } else {
-      return [
-        { label: "Top", link: "/" },
-      ];
-    }
+    this.user = await AuthUtil.GetUser<IUserAuthBase>();
   }
 }
 
